@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 var summaries = new[]
+{
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+};
+
+var summaries2 = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
@@ -97,10 +104,10 @@ class Todo
     public bool IsComplete { get; set; }
 }
 
-//class TodoDb : DbContext
-//{
-//    public TodoDb(DbContextOptions<TodoDb> options)
-//        : base(options) { }
+class TodoDb : DbContext
+{
+    public TodoDb(DbContextOptions<TodoDb> options)
+        : base(options) { }
 
-//    public DbSet<Todo> Todos => Set<Todo>();
-//}
+    public DbSet<Todo> Todos => Set<Todo>();
+}
